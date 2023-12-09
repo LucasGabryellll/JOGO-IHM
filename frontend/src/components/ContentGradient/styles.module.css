@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  height: 100%;
+  width: 100%;
+
+  margin-top: 10%;
+
+  gap: 40px;
+}
+
+.content {
+  display: flex;
+
+  gap: 20px;
+
+  align-items: center;
+  flex-direction: column;
+
+  background-color: rgba(255, 255, 255, .3);
+
+  border: 1px solid #00D1FF;
+  border-radius: 10px;
+
+  width: 28%;
+
+  padding: 2%;
+}
+
+.description {
+  color: aliceblue;
+
+  font-size: 48px;
+}
