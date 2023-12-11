@@ -6,7 +6,7 @@
   height: 100%;
   width: 100%;
 
-  margin-top: 10%;
+  margin-top: 2%;
 
   gap: 40px;
 }
@@ -24,7 +24,7 @@
   border: 1px solid #00D1FF;
   border-radius: 10px;
 
-  width: 28%;
+  width: 30%;
 
   padding: 2%;
 }
@@ -33,4 +33,18 @@
   color: aliceblue;
 
   font-size: 48px;
+
+  animation: bounce 1.5s infinite;
+  animation-direction: alternate;
+  animation-timing-function: cubic-bezier(.5, 0.05, 1, .5);
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0)
+  }
+
+  to {
+    transform: translate3d(0, 50%, 0);
+  }
 }

@@ -9,13 +9,15 @@ export function Home() {
     <Background>
       <ContentGradient description="JOGO IHM">
         {OptionsButtonHome().map((value) => (
-          <Button.Root
-            key={`options-buttons-home-${value.id}`}
-            description={value.description}
-            onPress={value.onPress}
-          >
-            <Button.Icon Icon={value.Icon} />
-          </Button.Root>
+          <div style={{ height: 100, width: '100%' }}>
+            <Button.Root
+              key={`options-buttons-home-${value.id}`}
+              description={value.description}
+              onPress={value.onPress}
+            >
+              <Button.Icon Icon={value.Icon} />
+            </Button.Root>
+          </div>
         ))}
       </ContentGradient>
     </Background>

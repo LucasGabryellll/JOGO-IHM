@@ -1,0 +1,18 @@
+.content {
+  display: flex;
+  gap: 12%;
+
+  position: absolute;
+  top: 20px;
+  width: 100%;
+
+  align-items: center;
+  justify-content: center;
+
+  height: 20px;
+
+  color: #FFF;
+
+  font-size: 20px;
+  font-weight: 100;
+}

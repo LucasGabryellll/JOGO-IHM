@@ -1,8 +1,14 @@
+:root {
+  --distac: rgb(0, 235, 230),
+  --text-primary: #004E60,
+  --text-on-background: rgba(240, 248, 255, 0.9)
+}
+
 * {
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Knewave';
 }
 
 body {

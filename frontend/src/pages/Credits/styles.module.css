@@ -1,0 +1,50 @@
+.content-information {
+  display: flex;
+  flex-direction: column;
+  max-height: 300px;
+  overflow: hidden;
+}
+
+.scrolling-content {
+  display: inline-block;
+}
+
+.scrolling-content:hover {
+  animation: scroll 30s linear infinite; 
+}
+
+.content-button {
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  flex-direction: column;
+  width: 30%; 
+  height: 40px;
+  margin-top: 40px; 
+  gap: 20px;
+
+  font-size: 42px;
+  color: #FFF;
+}
+
+.button {
+  height: 80px;
+  width: 100%;
+}
+
+@keyframes scroll {
+  0%, 75% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-100%);
+    animation-timing-function: steps(1, start);
+  }
+  50% {
+    transform: translateY(-200%);
+    animation-timing-function: steps(1, start);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
