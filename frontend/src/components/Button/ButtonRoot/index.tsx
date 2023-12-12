@@ -1,7 +1,7 @@
-import { ReactNode } from 'react';
+import { ButtonHTMLAttributes, ReactNode } from 'react';
 import styles from './styles.module.css';
 
-interface ButtonRootProps {
+interface ButtonRootProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   onPress?: () => void;
   description: string;
   children?: ReactNode

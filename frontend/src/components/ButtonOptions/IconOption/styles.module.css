@@ -1,0 +1,14 @@
+.icon {
+  border-radius: 5px;
+  padding: 2px;
+
+  height: 45px;
+  width: 45px;
+
+  border: 0;
+  background-color: transparent;
+}
+
+.icon:hover {
+  cursor: pointer;
+}

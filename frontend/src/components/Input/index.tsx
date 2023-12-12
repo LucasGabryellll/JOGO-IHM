@@ -3,17 +3,20 @@ import { InputHTMLAttributes } from "react";
 import styles from './styles.module.css';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  value: string;
-  description?: string
+  description?: string;
 }
 
 export function Input(props: InputProps) {
+  const { description, id, ...rest } = props;
+
   return (
     <div className={styles.container}>
-      <p>{props?.description}</p>
+      {description && <label htmlFor={id}>{description}</label>}
+
       <input
-      className={styles['input-format']}
-        {...props}
+        className={styles['input-format']}
+        type="text"
+        {...rest}
       />
     </div>
   )

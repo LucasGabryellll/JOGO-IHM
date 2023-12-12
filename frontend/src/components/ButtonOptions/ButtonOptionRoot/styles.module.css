@@ -1,0 +1,11 @@
+.content {
+  position: absolute;
+  display: flex;
+  z-index: 20;
+
+  flex-direction: row;
+  gap: 20px;
+  
+  top: 10px;
+  right: 2%;
+}

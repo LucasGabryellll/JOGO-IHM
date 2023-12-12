@@ -1,0 +1,14 @@
+.container-form {
+  height: 200px;
+  overflow: auto;
+}
+
+.erros {
+  color: red;
+  margin-bottom: 5px;
+}
+
+.btn {
+  margin-top: 10px;
+  height: 60px;
+}

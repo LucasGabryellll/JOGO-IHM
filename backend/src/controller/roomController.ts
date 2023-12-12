@@ -29,5 +29,6 @@ function openRoom() {
 
 export {
   createNewRoom,
-  deleteRoom
+  deleteRoom,
+  openRoom
 }
