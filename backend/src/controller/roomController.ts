@@ -1,34 +1,32 @@
-import { io } from '../socketio';
-import { v4 } from 'uuid';
-import { Room, roomsAccessible } from '../model';
+import { Request, Response } from 'express';
+/*
+const createRoom = (req: Request, res: Response) => {
+  createNewRoom();
 
-function createNewRoom() {
-  const rooms = roomsAccessible;
-  const id = v4().slice(0, 8);
-
-  const newRoom: Room = { id, status: "active" };
-
-  rooms.push(newRoom);
-
-  io.emit("createRoom", () => `Sala ${id} criada com sucesso.`);
+  return res.status(200).json({ message: "Sala Criada com sucesso." });
 }
 
-function deleteRoom(id: string) {
-  const room = roomsAccessible.findIndex(value => value.id === id);
+const getAllRoom = (req: Request, res: Response) => {
+  try {
+    const rooms = roomsAccessible;
 
-  if (room !== -1) {
-    roomsAccessible.splice(room, 1);
+    return res.status(200).json({ result: rooms });
+  } catch (error) {
+    return res.status(400).json({ message: "Erro ao buscar salas." });
+
   }
-
-  io.emit("deleteRoom", () => `Sala deletada.`);
 }
 
-function openRoom() {
-  
+const deleteRoom = (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+
+    outRoom(id);
+
+  } catch (error) {
+    return res.status(400).json({ message: "Erro ao deletar sala." });
+  }
 }
 
-export {
-  createNewRoom,
-  deleteRoom,
-  openRoom
-}
+export { createRoom, deleteRoom, getAllRoom };
+*/

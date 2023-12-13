@@ -1,5 +1,5 @@
 import { Button } from "../../Button";
-import { Input } from "../../Input";
+import { ContainerInput } from "../../ContainerInput";
 
 import { PiSignInBold } from "react-icons/pi";
 import { UseFormReturn } from "react-hook-form";
@@ -10,7 +10,7 @@ import styles from './styles.module.css';
 
 interface FormProps<T> {
   dateInputs: OptionsInput[];
-  onSendForm: (date: any) => void;
+  onSendForm: (date: T) => void;
   useFormMethods: UseFormReturn<T | any | undefined>;
 }
 
@@ -22,12 +22,16 @@ export function Form<T>({ onSendForm, useFormMethods, dateInputs }: FormProps<T>
       <div className={styles['container-form']}>
         {dateInputs.map((value) => (
           <>
-            <Input
+            <ContainerInput
               key={`input-form-${value.value}`}
               description={value.description}
-              placeholder={value.placeholder}
-              {...register(value.value)}
-            />
+            >
+              <input
+                className={styles['input-format']}
+                placeholder={value.placeholder}
+                {...register(value.value)}
+              />
+            </ContainerInput>
 
             {//@ts-ignore
               <span className={styles.erros}>{errors?.[value?.value]?.message}</span>

@@ -1,23 +1,18 @@
 import { Player } from "./playerModel";
 
-interface Room {
-  id: string;
-  status: 'active' | 'desable'
-}
-
 interface RoomsInGame {
-  result: {
-    id: string;
-    isGameRunning: boolean;
-    playersInRoom: Player[]
-  }[]
+  id: string;
+  status: 'active' | 'desable';
+  playersInRoom: Player[]
 }
 
-const roomsAccessible: Room[] = [];
+interface OpenRoomResponse {
+  codigo: string;
+  usuario: string;
+}
 
-const roomsInGame: RoomsInGame = { result: [] };
+const roomsAccessible: RoomsInGame[] = [];
 
+export { RoomsInGame, OpenRoomResponse };
 
-export { roomsAccessible, roomsInGame };
-
-export { Room, RoomsInGame };
+export { roomsAccessible };

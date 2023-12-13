@@ -12,3 +12,11 @@
   margin-top: 10px;
   height: 60px;
 }
+
+.input-format {
+  height: 100%;
+  background-color: transparent;
+  border: 0;
+  width: 100%;
+  outline: 0;
+}

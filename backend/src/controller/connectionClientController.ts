@@ -1,13 +1,13 @@
 import { io } from "../socketio";
 
-import { clients, Player } from "../model";
+import { players, Player } from "../model";
 
 function refreshPlayer() {
-  io.emit("player_refresh", clients.players);
+  io.emit("player_refresh", players);
 }
 
 const addPlayer = ({ id, name, status }: Player) => {
-  clients.players.push({ id, name, status });
+  players.push({ id, name, status });
 
   refreshPlayer();
 }

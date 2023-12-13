@@ -1,10 +1,10 @@
-import { clients, Id } from "../model";
+import { players, Id } from "../model";
 
 const removePlayer = ({ id }: Id) => {
-  const player = clients.players.findIndex((value) => value.id === id);
+  const player = players.findIndex((value) => value.id === id);
 
   if (player) {
-    clients.players.splice(player, 1);
+    players.splice(player, 1);
     console.log(`${id}: desconectado.`);
   }
 } 

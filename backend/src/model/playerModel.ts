@@ -2,9 +2,13 @@ interface Id {
   id: string;
 }
 
-interface Player extends Id{
-  name: string
-  status: 'lobby' |'spector' | 'gamming'
+interface Player extends Id {
+  name: string,
+  status: 'lobby' | 'spector' | 'gamming'
 }
 
-export { Id, Player }
+const players: Player[] = []; 
+
+export { Id, Player };
+
+export { players };
