@@ -1,15 +1,10 @@
-import { io } from "../socketio";
-
 import { players, Player } from "../model";
+import { refreshPlayer } from "./updateClientListController";
 
-function refreshPlayer() {
-  io.emit("player_refresh", players);
-}
-
-const addPlayer = ({ id, name, status }: Player) => {
-  players.push({ id, name, status });
+const addPlayer = ({ id, name }: Player) => {
+  players.push({ id, name });
 
   refreshPlayer();
 }
 
-export { addPlayer, refreshPlayer };
+export { addPlayer };

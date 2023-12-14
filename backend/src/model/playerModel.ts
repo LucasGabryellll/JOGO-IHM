@@ -3,8 +3,7 @@ interface Id {
 }
 
 interface Player extends Id {
-  name: string,
-  status: 'lobby' | 'spector' | 'gamming'
+  name: string
 }
 
 const players: Player[] = []; 
