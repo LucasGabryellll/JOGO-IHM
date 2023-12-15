@@ -2,7 +2,6 @@ import { Player } from "./playerModel";
 
 interface RoomsInGame {
   id: string;
-  status: 'active' | 'desable';
   playersInRoom: Player[]
 }
 

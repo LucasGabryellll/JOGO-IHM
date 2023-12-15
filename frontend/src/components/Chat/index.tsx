@@ -1,33 +1,15 @@
 import { RiSendPlane2Fill } from "react-icons/ri";
 
-import { useSchemaValidade } from "../../hooks/useSchemaValidade";
-import { MessageSchema, messageSchema } from "../../model/yupShemaValidade/messageChat";
 import { socket } from "../../service/socketio";
 
-import { useEffect } from "react";
-import { MessagesChatState } from "../../controller/state/messageChatState";
-
+import { useMessageController } from "../../controller/useMessageController";
 import styles from "./styles.module.css";
 
 export function Chat() {
-  const { register, handleSubmit, resetField } = useSchemaValidade<MessageSchema>({ schemaYup: messageSchema });
+  const { chatController } = useMessageController();
+  const fetch = chatController()
 
-  const { message, setMessage } = MessagesChatState();
-
-  function onSendMenssage(date: MessageSchema) {
-    socket.emit('send_message', date.message);
-
-    resetField("message");
-  }
-
-  //@ts-ignore
-  useEffect(() => {
-    socket.on('receive_message', data => {
-      setMessage((state => [...state, data]));
-    });
-
-    return () => socket.off('receive_message');
-  }, [socket]);
+  const { handleSubmit, message, onSendMenssage, register } = fetch;
 
   return (
     <div className={styles.container}>
@@ -36,7 +18,7 @@ export function Chat() {
       <div className={styles.messages}>
         {/** Mensagens recebidas do Server da sala que o usuário está */}
         {message.map((messages, key) => (
-          <div className={styles[`${messages.userSend === socket.id ? 'message-send': 'message-receive'}`]}>
+          <div className={styles[`${messages.userId === socket.id ? 'message-send' : 'message-receive'}`]}>
             <p
               key={`messages-receive-${key}`}
             >

@@ -1,6 +1,7 @@
 import { v4 } from 'uuid';
 import { RoomsInGame, roomsAccessible } from '../model/roomGameModel';
 import { players } from '../model/playerModel';
+import { io } from '../socketio';
 
 interface OpenRoomProps {
   playerId: string;
@@ -21,7 +22,7 @@ function createNewRoom() {
   const rooms = roomsAccessible;
   const id = v4().slice(0, 6);
 
-  const newRoom: RoomsInGame = { id, status: "active", playersInRoom: [] };
+  const newRoom: RoomsInGame = { id, playersInRoom: [] };
 
   rooms.push(newRoom);
 
@@ -40,19 +41,30 @@ function outRoom({ playerId, roomId }: OpenRoomProps) {
   const room = roomsAccessible.find(rooms => roomId === rooms.id);
 
   room?.playersInRoom.filter(player => playerId !== player.id);
+
+  console.log(`${playerId}: saiu da sala: ${roomId}`);
 }
 
 function openRoom({ playerId, roomId }: OpenRoomProps) {
   const player = players.find(player => playerId === player.id);
-  const room = roomsAccessible.find(rooms => roomId === rooms.id);
+  const room = getRoom(roomId);
 
-  if (player) {
+  if (player && room) {
     room?.playersInRoom.push({
       id: player.id,
       name: player.name,
-      status: 'lobby'
     });
+  } 
+  
+  else {
+    return console.log("Sala não existe.");
   }
+}
+
+function totalClientsInRoom(room: string) {
+  const roomSize = io.sockets.adapter.rooms.get(room)?.size || 0;
+
+  io.to(room).emit("update_room_user", roomSize);
 }
 
 export {
@@ -62,5 +74,7 @@ export {
   outRoom,
 
   getAllRoom,
-  getRoom
+  getRoom,
+
+  totalClientsInRoom
 }

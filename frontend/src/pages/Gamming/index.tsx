@@ -1,20 +1,28 @@
-import { Background, ButtonOptions, HeaderUserPoints, Chat } from "../../components";
-import { useNavigation } from "../../hooks/useNavigation";
+import { Background, ButtonOptions, HeaderUserPoints, Chat, Modal } from "../../components";
+import { useGammingController } from "../../controller/useGammingController";
 
 export function Gamming() {
-  const { navigation } = useNavigation();
+  const { gammingFetch } = useGammingController();
+  const { closeRoom, usersInRoom, room } = gammingFetch();
 
   return (
     <Background>
-       <ButtonOptions.Root>
-        <ButtonOptions.Icon type="sound" action={() => console.log("Sound")}/>
-        <ButtonOptions.Icon type="help" action={() => console.log("help")}/>
-        <ButtonOptions.Icon type="close" action={() => navigation("/")}/>
+      <Modal.Root isOpen={usersInRoom < 2} onCloseModal={closeRoom}>
+        <div>
+          AGUARDANDO OUTRO USUÁRIO SE CONECTAR...
+          <p>O Código da sala é: {room}</p>
+        </div>
+      </Modal.Root>
+
+      <ButtonOptions.Root>
+        <ButtonOptions.Icon type="sound" action={() => console.log("Sound")} />
+        <ButtonOptions.Icon type="help" action={() => console.log("help")} />
+        <ButtonOptions.Icon type="close" action={closeRoom} />
       </ButtonOptions.Root>
 
-      <HeaderUserPoints/>
+      <HeaderUserPoints />
 
-      <Chat/>
+      <Chat />
     </Background>
   )
 }

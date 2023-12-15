@@ -12,7 +12,7 @@ export function AppRoutes() {
 
         <Route path='/creditos' element={<Credits/>}/>
 
-        <Route path='/partida' element={<Gamming/>}/>
+        <Route path='/partida/:room' element={<Gamming/>}/>
       </Routes>
     </Router>
   )

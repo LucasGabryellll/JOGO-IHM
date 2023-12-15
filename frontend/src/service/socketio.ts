@@ -1,9 +1,10 @@
 import { io } from 'socket.io-client';
 
-const serverHTTP = "http://192.168.99.28:5000";
+const serverHTTP = "ws://192.168.99.28:5000";
 
 const socket = io(serverHTTP, {
-  transports: ['websocket']
+  transports: ['websocket'],
+  autoConnect: true
 });
 
 export { socket };

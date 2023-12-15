@@ -1,8 +1,9 @@
 interface Message {
   room: string;
-  text: string;
+  message: string;
   createdAt: Date;
-  username: string
+  username: string;
+  userId: string
 }
 
 const messages: Message[] = [];

@@ -1,9 +1,9 @@
 import { io } from "../socketio";
 
-import {clients} from "../model";
+import { players } from "../model";
 
 function refreshPlayer() {
-  io.emit("player_refresh", clients);
+  io.emit("player_refresh", players);
 }
 
 export { refreshPlayer }

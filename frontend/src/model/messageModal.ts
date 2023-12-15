@@ -1,4 +1,7 @@
 export interface Message {
-  userSend: string;
+  room: string;
   message: string;
+  createdAt: Date;
+  username: string;
+  userId: string
 }

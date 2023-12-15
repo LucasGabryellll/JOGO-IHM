@@ -1,10 +1,10 @@
 import { Router } from 'express';
 
-import { createRoom, getAllRoom, deleteRoom } from '../controller/roomController';
+import { createNewRoom, getAllRoom, deleteRoom } from '../controller/roomsController';
 
 const roomRoutes = Router();
 
-roomRoutes.get('/create-room', createRoom);
+roomRoutes.get('/create-room', createNewRoom);
 roomRoutes.get('/rooms', getAllRoom);
 roomRoutes.get('/room/delete/:id', deleteRoom);
 

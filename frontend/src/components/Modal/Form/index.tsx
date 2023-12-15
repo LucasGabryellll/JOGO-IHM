@@ -29,7 +29,7 @@ export function Form<T>({ onSendForm, useFormMethods, dateInputs }: FormProps<T>
               <input
                 className={styles['input-format']}
                 placeholder={value.placeholder}
-                {...register(value.value)}
+                {...register(value.value.toLowerCase())}
               />
             </ContainerInput>
 
