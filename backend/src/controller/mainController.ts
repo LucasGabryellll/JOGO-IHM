@@ -22,22 +22,38 @@ io.on("connection", socket => {
 
     openRoom({ playerId: socket.id, roomId: id });
 
-    socket.emit("entry_room", id);
-
-    //io.to(id).emit('update_room_user', 1);
+    socket.emit('entry_room', {
+      sucess: true,
+      message: 'Entrou na sala com sucesso',
+      room: id
+    });
   });
 
   socket.on('open_room', (data: OpenRoomResponse) => {
-    console.log(`${socket.id} : ${data.usuario} - conectou na sala ${data?.codigo}`);
-
-    socket.join(data.codigo);
-    
-    openRoom({ playerId: socket.id, roomId: data.codigo });
-
     const roomSize = io.sockets.adapter.rooms.get(data.codigo)?.size || 0;
 
-    //io.to(data.codigo).emit('update_room_user', roomSize);
-    totalClientsInRoom(data.codigo)
+    if (roomSize < 2) {
+      console.log(`${socket.id} : ${data.usuario} - conectou na sala ${data?.codigo}`);
+      socket.join(data.codigo);
+
+      openRoom({ playerId: socket.id, roomId: data.codigo });
+
+      socket.emit('entry_room', {
+        sucess: true,
+        message: 'Entrou na sala com sucesso',
+        room: data.codigo
+      });
+
+      totalClientsInRoom(data.codigo);
+    }
+
+    else {
+      socket.emit('entry_room', {
+        sucess: false,
+        message: 'A Sala está cheia, tente outra.',
+        room: data.codigo
+      });
+    }
   });
 
   socket.on('send_message', (data: Message) => {
@@ -54,7 +70,6 @@ io.on("connection", socket => {
 
   socket.on('out_room', (room) => {
     outRoom({ playerId: socket.id, roomId: room });
-    //console.log('saiu da sal')
     socket.leave(room);
 
     totalClientsInRoom(room);

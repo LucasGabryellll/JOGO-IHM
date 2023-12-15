@@ -1,7 +1,6 @@
 import { ReactNode, createContext, useState } from 'react';
 import { GameContextProps } from '../model/contextProps/gameContextProps';
-//import { useConnectSocket } from '../hooks/useConnectSocket';
-//import { socket } from '../service/socketio';
+import { useConnectSocket } from '../hooks/useConnectSocket';
 
 const GameContext = createContext<GameContextProps>({
   room: '',
@@ -26,7 +25,7 @@ function GameProvider({ children }: GameProviderProps) {
     setUsername(value)
   }
 
-  //useConnectSocket();
+  useConnectSocket();
   
   return (
     <GameContext.Provider value={{ room, username, onSelectRoom, onSelectUsername }}>

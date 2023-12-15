@@ -1,9 +1,9 @@
-import { Background, ButtonOptions, HeaderUserPoints, Chat, Modal } from "../../components";
+import { Background, ButtonOptions, HeaderUserPoints, Chat, Modal, Carts } from "../../components";
 import { useGammingController } from "../../controller/useGammingController";
 
 export function Gamming() {
   const { gammingFetch } = useGammingController();
-  const { closeRoom, usersInRoom, room } = gammingFetch();
+  const { closeRoom, usersInRoom, room, username } = gammingFetch();
 
   return (
     <Background>
@@ -23,6 +23,8 @@ export function Gamming() {
       <HeaderUserPoints />
 
       <Chat />
+
+      <Carts namePlayer={`JOGADOR: ${username}`} isOpen={false} />
     </Background>
   )
 }

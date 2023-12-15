@@ -1,0 +1,46 @@
+.container {
+  height: 100%;
+  width: 100%;
+
+  position: absolute;
+
+  z-index: 60;  
+  
+  display: flex;
+
+  justify-content: center;
+
+  backdrop-filter: blur(2px);
+}
+
+.description-player {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 10%;
+
+  color: #FFF;
+
+  font-size: 38px;
+
+  height: 130px;
+  width: 600px;
+  
+  border-radius: 20px;
+
+  background-color: #00A510;
+
+  box-shadow: -10px 10px 4px 4px rgba(0, 0, 0, 0.8);
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  bottom: -8%;
+
+  gap: 20px;
+}
