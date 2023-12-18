@@ -50,17 +50,19 @@ io.on("connection", socket => {
 
   socket.on('open_room', (data: OpenRoomResponse) => {
     const roomSize = io.sockets.adapter.rooms.get(data.codigo)?.size || 0;
+    const codigo = data.codigo.toUpperCase();
 
     if (roomSize < 2) {
-      console.log(`${socket.id} : ${data.usuario} - conectou na sala ${data?.codigo}`);
-      socket.join(data.codigo);
 
-      openRoom({ playerId: socket.id, roomId: data.codigo });
+      console.log(`${socket.id} : ${data.usuario} - conectou na sala ${data?.codigo}`);
+      socket.join(codigo);
+
+      openRoom({ playerId: socket.id, roomId: codigo });
 
       // Adiciona o segundo jogador na sala de jogo.
-      addPlayerTwo(data.codigo, socket.id);
+      addPlayerTwo(codigo, socket.id);
 
-      const game = findGame(data.codigo);
+      const game = findGame(codigo);
 
       const gameState = statusGamming[game!];
       gameState.status = true;
@@ -68,7 +70,7 @@ io.on("connection", socket => {
       socket.emit('entry_room', {
         sucess: true,
         message: 'Entrou na sala com sucesso',
-        room: data.codigo
+        room: codigo
       });
 
       const state = {
@@ -77,21 +79,22 @@ io.on("connection", socket => {
         status: gameState.status
       }
 
-      totalClientsInRoom(data.codigo);
+      totalClientsInRoom(codigo);
 
-      io.to(data.codigo).emit('updateStateGame', state);
+      io.to(codigo).emit('updateStateGame', state);
     }
 
     else {
       socket.emit('entry_room', {
         sucess: false,
         message: 'A Sala está cheia, tente outra.',
-        room: data.codigo
+        room: codigo
       });
     }
   });
 
   socket.on('send_message', (data: Message) => {
+    
     const formatMessage = {
       userSend: socket.id,
       message: data.message,
@@ -111,15 +114,17 @@ io.on("connection", socket => {
   });
 
   socket.on('playerAnswer', (data: PlayerAnswerResponse) => {
-    updatePlayerFocus(data.room.id);
+    const codigo = data.room.id.toUpperCase();
 
-    const game = findGame(data.room.id);
+    updatePlayerFocus(codigo);
+
+    const game = findGame(codigo);
     const gameState = statusGamming[game!];
 
     const cardPos = data.card.value;
     const type = data.card.type;
 
-    updateStatePlayer(data.room.id, socket.id, type, cardPos);
+    updateStatePlayer(codigo, socket.id, type, cardPos);
 
     const state = {
       focus: gameState.playerInFocus,
@@ -127,7 +132,7 @@ io.on("connection", socket => {
       status: gameState.status
     }
 
-    io.to(data.room.id).emit('updateStateGame', state);
+    io.to(codigo).emit('updateStateGame', state);
 
   });
 

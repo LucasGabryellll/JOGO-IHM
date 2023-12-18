@@ -1,6 +1,6 @@
 .container-modal {
   position: fixed;
-  z-index: 20;
+  z-index: 80;
   
   top: 0;
   bottom: 0;

@@ -1,6 +1,18 @@
-import { Background, ButtonOptions, HeaderUserPoints, Chat, Modal, Carts, Map, Player } from "../../components";
+import {
+  Background,
+  ButtonOptions,
+  HeaderUserPoints,
+  Chat,
+  Modal,
+  Carts,
+  Map,
+  Player
+} from "../../components";
+
 import { useGammingController } from "../../controller/useGammingController";
 import { socket } from "../../service/socketio";
+
+import styles from "./styles.module.css";
 
 export function Gamming() {
   const { gammingFetch } = useGammingController();
@@ -9,9 +21,11 @@ export function Gamming() {
   return (
     <Background>
       <Modal.Root isOpen={usersInRoom < 2} onCloseModal={closeRoom}>
-        <div>
+        <div className={styles['modal-info']}>
           AGUARDANDO OUTRO USUÁRIO SE CONECTAR...
-          <p>O Código da sala é: {room}</p>
+          <div className={styles['cod-room']}>O Código da sala é:
+            <p className={styles.room}>{room.toUpperCase()}</p>
+          </div>
         </div>
       </Modal.Root>
 

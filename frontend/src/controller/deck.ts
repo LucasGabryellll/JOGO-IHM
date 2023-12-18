@@ -1,7 +1,7 @@
-import { Card } from "../model/card";
+import { CardProps } from "../model/card";
 
-function createDeck(): Card[] {
-  const deck: Card[] = [];
+function createDeck(): CardProps[] {
+  const deck: CardProps[] = [];
 
   for (let i = 0; i < 10; i++) {
     const randomNumber = Math.floor(Math.random() * 6) + 1;

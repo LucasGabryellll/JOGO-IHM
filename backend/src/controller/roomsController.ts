@@ -13,14 +13,14 @@ function getAllRoom() {
 }
 
 function getRoom(roomId: string) {
-  const room = roomsAccessible.find(rooms => roomId === rooms.id);
+  const room = roomsAccessible.find(rooms => roomId.toUpperCase() === rooms.id);
 
   return room;
 }
 
 function createNewRoom() {
   const rooms = roomsAccessible;
-  const id = v4().slice(0, 6);
+  const id = v4().slice(0, 6).toUpperCase();
 
   const newRoom: RoomsInGame = { id, playersInRoom: [] };
 
@@ -30,7 +30,7 @@ function createNewRoom() {
 }
 
 function deleteRoom(id: string) {
-  const room = roomsAccessible.findIndex(value => value.id === id);
+  const room = roomsAccessible.findIndex(value => value.id === id.toUpperCase());
 
   if (room !== -1) {
     roomsAccessible.splice(room, 1);
@@ -38,7 +38,7 @@ function deleteRoom(id: string) {
 }
 
 function outRoom({ playerId, roomId }: OpenRoomProps) {
-  const room = roomsAccessible.find(rooms => roomId === rooms.id);
+  const room = roomsAccessible.find(rooms => roomId.toUpperCase() === rooms.id);
 
   room?.playersInRoom.filter(player => playerId !== player.id);
 
@@ -62,9 +62,9 @@ function openRoom({ playerId, roomId }: OpenRoomProps) {
 }
 
 function totalClientsInRoom(room: string) {
-  const roomSize = io.sockets.adapter.rooms.get(room)?.size || 0;
+  const roomSize = io.sockets.adapter.rooms.get(room.toUpperCase())?.size || 0;
 
-  io.to(room).emit("update_room_user", roomSize);
+  io.to(room.toUpperCase()).emit("update_room_user", roomSize);
 }
 
 export {

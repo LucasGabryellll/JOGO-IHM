@@ -1,0 +1,23 @@
+.modal-info {
+  text-align: center;
+}
+
+.cod-room {
+  font-size: 26px;
+  font-family: Arial, Helvetica, sans-serif;
+
+  margin-bottom: 20px;
+}
+
+.room {
+  margin-top: 10px;
+
+  background-color: #FFF;
+
+  border-radius: 5px;
+  
+  font-size: 36px;
+  font-weight: 700;
+
+  box-shadow: -5px 5px rgba(0, 0, 0, .6);
+}

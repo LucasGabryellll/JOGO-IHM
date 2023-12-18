@@ -1,4 +1,4 @@
-export interface Card {
+export interface CardProps {
   id: string;
   type: 'moveForward' | 'moveBackward' | 'answerQuestion';
   value?: number;

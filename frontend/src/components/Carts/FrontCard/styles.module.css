@@ -1,0 +1,38 @@
+.container {
+  position: absolute;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  height: 100%;
+  width: 100%;
+
+  flex-direction: column;
+  font-size: 26px;
+
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+}
+
+.title-card, .card-avance, .card-return{
+  font-size: 26px;
+}
+
+.card-avance {
+  color: #009e22;
+}
+
+.card-return {
+  color: #ce0000;
+}
+
+.img {
+  margin-top: 20%;
+  height: 120px;
+}
+
+.value-card {
+  margin-top: auto;
+  margin-bottom: 10px;
+}
