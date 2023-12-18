@@ -1,9 +1,21 @@
 interface StatusGamming {
   playerWin: string,
+  status: boolean;
   roomId: string,
-  playerTheMoment: string
+  players: {
+    playerOne: {
+      id: string;
+      pos: number,
+    };
+    
+    playerTwo: {
+      id: string;
+      pos: number
+    }
+  }
+  playerInFocus: string;
 }
 
-const statusGamming: StatusGamming[] = []
+const statusGamming: StatusGamming[] = [];
 
 export { statusGamming };

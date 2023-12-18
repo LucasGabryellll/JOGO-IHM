@@ -24,9 +24,12 @@
   border: 1px solid #00D1FF;
   border-radius: 10px;
 
-  width: 30%;
+  width: 35%;
 
   padding: 2%;
+
+  
+  box-shadow: -5px 5px rgba(0, 0, 0, 0.2);
 }
 
 .description {

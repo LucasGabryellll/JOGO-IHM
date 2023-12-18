@@ -9,3 +9,8 @@ export * from "./ContainerInput";
 export * from "./Toasty";
 
 export * from "./Carts";
+
+export * from "./ReturnToMenu";
+
+export * from "./Map";
+export * from "./Player";

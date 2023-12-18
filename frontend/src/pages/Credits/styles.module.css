@@ -1,8 +1,13 @@
 .content-information {
   display: flex;
+
   flex-direction: column;
   max-height: 300px;
-  overflow: hidden;
+  overflow: auto;
+
+  padding-right: 10px;
+
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .scrolling-content {
@@ -10,40 +15,76 @@
 }
 
 .scrolling-content:hover {
-  animation: scroll 30s linear infinite; 
+  animation: scroll 30s linear infinite;
 }
 
-.content-button {
-  display: flex;
-  align-items: center;
-  justify-content: center; 
-  flex-direction: column;
-  width: 30%; 
-  height: 40px;
-  margin-top: 40px; 
-  gap: 20px;
+.content-info-credit {
+  background-color: #FFF;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
 
-  font-size: 42px;
+  box-shadow: -4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+  background-color: #8b8b8b;
   color: #FFF;
+
+  margin-bottom: 5px;
+  font-weight: 700;
+  font-size: 22px;
+  padding: 5px;
+
+  text-align: center;
+
+  border-radius: 5px;
+
+  box-shadow: -2px 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
-.button {
-  height: 80px;
-  width: 100%;
+.description {
+  margin-top: 10px;
+  margin-left: 10px;
+
+  font-size: 20px;
+  position: relative;
+
+  padding-left: 8px;
+
+  margin-bottom: 10px;
+}
+
+.description::before {
+  content: "";
+  position: absolute;
+  background-color: #8B8B8B;
+  width: 6px; 
+  height: 6px;
+  border-radius: 50%;
+  left: 0px;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
 }
 
 @keyframes scroll {
-  0%, 75% {
+
+  0%,
+  75% {
     transform: translateY(0);
   }
+
   25% {
     transform: translateY(-100%);
     animation-timing-function: steps(1, start);
   }
+
   50% {
     transform: translateY(-200%);
     animation-timing-function: steps(1, start);
   }
+
   100% {
     transform: translateY(0);
   }

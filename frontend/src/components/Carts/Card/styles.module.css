@@ -6,7 +6,9 @@
 
   padding: 20px;
 
-  transition: .800ms ease-in-out;
+  transition: 200ms ease-in-out;
+
+  box-shadow: -10px 5px rgba(0, 0, 0, .6);
 }
 
 .card-inner {
@@ -22,4 +24,7 @@
   scale: 110%;
 
   cursor: pointer;
+  margin-bottom: 20px;
+
+  box-shadow: 0 10px rgba(0, 0, 0, .8);
 }

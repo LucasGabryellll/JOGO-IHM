@@ -31,7 +31,7 @@
   border-radius: 5px 5px 0px 0px;
 
   width: 280px;
-  height: 300px;
+
 
   padding: 5px;
 }
@@ -135,6 +135,40 @@
   color: #3DFF1E;
 
   transition: 200ms ease-in-out;
+}
+
+.visible-chat {
+  position: absolute;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 20px;
+  width: 20px;
+
+  background-color: #0bd43e;
+
+  color: #FFF;
+
+  font-weight: bold;
+  font-size: 28px;
+
+  top: -10px;
+  right: 5px;
+
+  border-radius: 50%;
+
+  border: 0;
+
+  transition: 200ms ease-in-out;
+}
+
+.visible-chat:hover {
+  cursor: pointer;
+
+  background-color: #08aa30;
+
 }
 
 .icon:hover {

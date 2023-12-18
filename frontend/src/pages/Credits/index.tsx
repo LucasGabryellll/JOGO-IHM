@@ -1,60 +1,78 @@
-import { Background, Button, ContentGradient } from "../../components";
-import { useNavigation } from "../../hooks/useNavigation";
-import { IoReturnDownBackSharp } from "react-icons/io5";
+import { Background, ContentGradient, ReturnToMenu } from "../../components";
 
 import styles from './styles.module.css';
 
 export function Credits() {
-  const { navigation } = useNavigation();
 
   return (
     <Background>
-      <div className={styles['content-button']}>
-        <div className={styles.button}>
-          <Button.Root description="VOLTAR" onPress={() => navigation("/")} >
-            <Button.Icon Icon={IoReturnDownBackSharp} /> 
-          </Button.Root>
-        </div>
-
-        <p>CRÉDITOS</p>
-      </div>
+     <ReturnToMenu headerTitle="CRÉDITOS" />
 
       <ContentGradient>
         <div className={styles['content-information']}>
           <div className={styles['scrolling-content']}>
-            <p>Desenvolvido por:</p>
-            <strong>Lucas Gabryel Monteiro de Lima</strong>
+            <div className={styles['content-info-credit']}>
+              <p className={styles.title}>Desenvolvido por:</p>
+              <p className={styles.description}>Lucas Gabryel Monteiro de Lima</p>
+            </div>
 
-            <p>Professor Orientador:</p>
-            <strong>Richarlison D'Emery</strong>
+            <div className={styles['content-info-credit']}>
+              <p className={styles.title}>Professor Orientador:</p>
+              <p className={styles.description}>Richarlison D'Emery</p>
+            </div>
 
-            <p>Cadeira: Interface Homem-Máquina</p>
+            <div className={styles['content-info-credit']}>
+              <p className={styles.title}>Cadeira:</p>
+              <p className={styles.description}>Interface Homem-Máquina</p>
+            </div>
 
-            <p>Contribuições Individuais:</p>
-            <p>Lucas Gabryel: Desenvolvimento da interface do usuário, programação principal, e design de níveis.</p>
-            <p>Lucas Gabryel: Implementação de recursos especiais e mecânicas de jogo.</p>
-            <p>Lucas Gabryel: Gráficos e design de personagens.</p>
-            <p>Lucas Gabryel: Trilha sonora e efeitos sonoros.</p>
+            <div className={styles['content-info-credit']}>
+              <p className={styles.title}>Contribuições Individuais:</p>
 
-            <p>Recursos Utilizados:</p>
-            <p>-React;</p>
-            <p>-Node JS;</p>
-            <p>-TypeScript;</p>
-            <p>-Socket.</p>
+              <p className={styles.description}>Lucas Gabryel: Desenvolvimento da interface do usuário, programação principal, e design de níveis.</p>
 
-            <p>Universidade:</p>
-            <p>- Universidade Federal Rural do Pernambuco.</p>
+              <p className={styles.description}>Lucas Gabryel: Implementação de recursos especiais e mecânicas de jogo.</p>
 
-            <p>Copyright e Licenças:</p>
-            <p>Projeto acadêmico podendo ser utilizado de forma livre.</p>
+              <p className={styles.description}>Lucas Gabryel: Trilha sonora e efeitos sonoros.</p>
+            </div>
 
-            <p>Sobre o Jogo:</p>
-            <p>O jogo possibilita que dois jogadores disputem entre si, o tema central é programação.</p>
-            <p>No qual são lançados desafios para o seu oponente, que o adversário irá construir, ou você responde a questões formuladas pelo sistema.</p>
+            <div className={styles['content-info-credit']}>
+              <p className={styles.title}>Recursos Utilizados:</p>
+              <p className={styles.description}>React;</p>
+              <p className={styles.description}>Node JS;</p>
+              <p className={styles.description}>TypeScript;</p>
+              <p className={styles.description}>Socket.</p>
+            </div>
 
-            <p>Agradecemos a todos que contribuíram e apoiaram este projeto. Esperamos que aproveitem o jogo tanto quanto nós aproveitamos o processo de desenvolvê-lo.</p>
+            <div className={styles['content-info-credit']}>
+              <p className={styles.title}>Universidade:</p>
+              <p className={styles.description}>Universidade Federal Rural do Pernambuco.</p>
+            </div>
 
-            <p>Nome do Seu Jogo © 2023 - Todos os direitos reservados.</p>
+            <div className={styles['content-info-credit']}>
+              <p className={styles.title}>Copyright e Licenças:</p>
+              <p className={styles.description}>Projeto acadêmico podendo ser utilizado de forma livre.</p>
+            </div>
+
+            <div className={styles['content-info-credit']}>
+              <p className={styles.title}>Sobre o Jogo:</p>
+              O jogo possibilita que dois jogadores disputem entre si, o tema central é programação.
+              
+              <br/>
+              <br/>
+
+              No qual são lançados desafios para o seu oponente, que o adversário irá construir, ou você responde a questões formuladas pelo sistema.
+              
+              <br/>
+              <br/>
+
+              Agradecemos a todos que contribuíram e apoiaram este projeto. Esperamos que aproveitem o jogo tanto quanto nós aproveitamos o processo de desenvolvê-lo.
+              
+              <br/>
+              <br/>
+
+              <strong>CraftCodeDuel</strong> © 2023 - Todos os direitos reservados.
+            </div>
 
           </div>
         </div>

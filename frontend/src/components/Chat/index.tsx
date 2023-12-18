@@ -1,8 +1,14 @@
+import { useState } from "react";
+
+import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowUp } from "react-icons/io";
+
 import { RiSendPlane2Fill } from "react-icons/ri";
 
 import { socket } from "../../service/socketio";
 
 import { useMessageController } from "../../controller/useMessageController";
+
 import styles from "./styles.module.css";
 
 export function Chat() {
@@ -11,8 +17,27 @@ export function Chat() {
 
   const { handleSubmit, message, onSendMenssage, register } = fetch;
 
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const alterStateOpenChat = () => {
+    setIsOpen(state => !state)
+  }
+
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{ height: isOpen ? 300 : 80 }}>
+      <button
+        className={styles['visible-chat']}
+        onClick={alterStateOpenChat}
+      >
+        {isOpen &&
+          <IoIosArrowDown />
+        }
+
+        {!isOpen &&
+          <IoIosArrowUp />
+        }
+      </button>
+
       <p className={styles['text-header-chat']}>CHAT ONLINE</p>
 
       <div className={styles.messages}>

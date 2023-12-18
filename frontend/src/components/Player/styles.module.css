@@ -1,0 +1,58 @@
+.container {
+  position: absolute;
+  z-index: 20;
+}
+
+.content-info {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 40px;
+  width: 40px;
+
+  border-radius: 50%;
+  background-color: #00EBE6;
+}
+
+.name, .name-oponent{
+  position: absolute;
+  top: -20px;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 10px;
+
+  background-color: rgba(255, 255, 255, 0.3);
+
+  padding: 1.2px;
+  border-radius: 4px;
+
+  border: solid .2px;
+  color: #FFF;
+  animation: bounce .8s infinite;
+  animation-direction: alternate;
+  animation-timing-function: cubic-bezier(.5, 0.05, 1, .5);
+}
+
+.name {
+  border-color: #00EBE6;
+  background-color: #006664;
+}
+
+.name-oponent {
+  background-color: #FF0F00;
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0)
+  }
+
+  to {
+    transform: translate3d(0, 20%, 0);
+    font-weight: 700;
+  }
+}

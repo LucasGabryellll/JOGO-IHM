@@ -1,12 +1,14 @@
-import { Card } from './Card';
 import styles from './styles.module.css';
+
+import { Card } from './Card';
 
 interface CartsProps {
   namePlayer: string;
-  isOpen: boolean
+  isOpen: boolean;
+  room: string;
 }
 
-export function Carts({ namePlayer, isOpen }: CartsProps) {
+export function Carts({ namePlayer, isOpen, room }: CartsProps) {
 
   if (!isOpen) return null;
 
@@ -14,10 +16,10 @@ export function Carts({ namePlayer, isOpen }: CartsProps) {
     <div className={styles.container}>
       <div className={styles['description-player']}>{namePlayer}</div>
       <div className={styles.content}>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        <Card room={room} />
+        <Card room={room} />
+        <Card room={room} />
+        <Card room={room}/>
       </div>
     </div>
   )

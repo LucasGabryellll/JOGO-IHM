@@ -1,9 +1,10 @@
-import { Background, ButtonOptions, HeaderUserPoints, Chat, Modal, Carts } from "../../components";
+import { Background, ButtonOptions, HeaderUserPoints, Chat, Modal, Carts, Map, Player } from "../../components";
 import { useGammingController } from "../../controller/useGammingController";
+import { socket } from "../../service/socketio";
 
 export function Gamming() {
   const { gammingFetch } = useGammingController();
-  const { closeRoom, usersInRoom, room, username } = gammingFetch();
+  const { closeRoom, usersInRoom, room, username, statusGame } = gammingFetch();
 
   return (
     <Background>
@@ -22,9 +23,35 @@ export function Gamming() {
 
       <HeaderUserPoints />
 
+      <Map>
+        {statusGame?.players &&
+          <>
+            <Player
+              type="man"
+              playerStatus={statusGame.players.playerOne}
+              status={statusGame?.status}
+              name={username}
+            />
+
+            <Player
+              type="woman"
+              playerStatus={statusGame.players.playerTwo}
+              status={statusGame?.status}
+              name={username}
+            />
+          </>
+        }
+      </Map>
+
       <Chat />
 
-      <Carts namePlayer={`JOGADOR: ${username}`} isOpen={false} />
+      {statusGame?.status &&
+        <Carts
+          namePlayer={`JOGADOR: ${username.toUpperCase()}`}
+          isOpen={statusGame?.focus === socket.id}
+          room={room}
+        />
+      }
     </Background>
   )
 }
