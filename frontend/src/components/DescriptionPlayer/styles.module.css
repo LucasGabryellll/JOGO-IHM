@@ -1,0 +1,18 @@
+.description-player {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #FFF;
+
+  font-size: 38px;
+
+  height: 120px;
+  width: 50%;
+  
+  border-radius: 20px;
+
+  background-color: #00A510;
+
+  box-shadow: -10px 10px 4px 4px rgba(0, 0, 0, 0.8);
+}

@@ -1,12 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import { Home, Lobby, Credits, Tutorial, Gamming } from '../pages';
+import { Login, Home, Lobby, Credits, Tutorial, Gamming } from '../pages';
 
 export function AppRoutes() {
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<Login />} />
+
+        <Route path='/home' element={<Home/>} />
 
         <Route path='/tutorial' element={<Tutorial/>}/>
 

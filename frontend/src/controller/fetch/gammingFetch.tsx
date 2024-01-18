@@ -15,7 +15,7 @@ export function GammingFetch() {
 
   function closeRoom() {
     socket.emit('out_room', room);
-    navigation('/');
+    navigation('/home');
     console.log("saiu da sala", room);
   }
 

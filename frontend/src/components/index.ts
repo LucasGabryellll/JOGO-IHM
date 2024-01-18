@@ -14,3 +14,6 @@ export * from "./ReturnToMenu";
 
 export * from "./Map";
 export * from "./Player";
+
+export * from "./Time";
+export * from "./DescriptionPlayer";

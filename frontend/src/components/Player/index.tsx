@@ -29,9 +29,12 @@ export function Player({ playerStatus, type, status, name }: PlayerProps) {
         left: status ? positions.left + 5 : positionInicial.left - 20,
       }}
     >
-      <div className={styles['content-info']}>
-        <div 
-        className={player ? styles.name : styles['name-oponent']}
+      <div
+        className={`${styles['content-info']}`}
+        style={{ backgroundColor: player ? '#00EBE6' :  '#FF0F00' }}
+      >
+        <div
+          className={player ? styles.name : styles['name-oponent']}
         >
           {player ? name : 'OPONENTE'}
         </div>

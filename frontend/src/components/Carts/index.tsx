@@ -1,6 +1,8 @@
-import styles from './styles.module.css';
-
 import { Card } from './Card';
+
+import { DescriptionPlayer, Time } from '../index';
+
+import styles from './styles.module.css';
 
 interface CartsProps {
   namePlayer: string;
@@ -14,12 +16,17 @@ export function Carts({ namePlayer, isOpen, room }: CartsProps) {
 
   return (
     <div className={styles.container}>
-      <div className={styles['description-player']}>{namePlayer}</div>
+      <Time />
+
+      <DescriptionPlayer
+        namePlayer={namePlayer}
+      />
+
       <div className={styles.content}>
         <Card room={room} />
         <Card room={room} />
         <Card room={room} />
-        <Card room={room}/>
+        <Card room={room} />
       </div>
     </div>
   )

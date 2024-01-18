@@ -10,10 +10,5 @@ export const optionsInputOpenRoom: OptionsInput[] = [
     description: "CÓDIGO:*", 
     value: "codigo", 
     placeholder: "Digite o código da sala..." 
-  },
-  { id: 2, 
-    description: "USUÁRIO:*", 
-    value: "usuario", 
-    placeholder: "Escolha um nome para o usuário..." 
-  },
+  }
 ]; 

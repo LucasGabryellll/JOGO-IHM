@@ -44,14 +44,14 @@ export function Gamming() {
               type="man"
               playerStatus={statusGame.players.playerOne}
               status={statusGame?.status}
-              name={username}
+              name={username.toUpperCase()}
             />
 
             <Player
               type="woman"
               playerStatus={statusGame.players.playerTwo}
               status={statusGame?.status}
-              name={username}
+              name={username.toUpperCase()}
             />
           </>
         }

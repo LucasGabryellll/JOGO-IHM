@@ -1,0 +1,30 @@
+.title {
+  margin-top: 20px;
+
+  color: aliceblue;
+
+  font-size: 42px;
+
+  animation: bounce 1.5s infinite;
+  animation-direction: alternate;
+  animation-timing-function: cubic-bezier(.5, 0.05, 1, .5);
+}
+
+.container {
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 10px;
+  width: 30%;
+  margin-top: 5%;
+  padding: 3%;
+  box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.8);
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0)
+  }
+
+  to {
+    transform: translate3d(0, 50%, 0);
+  }
+}
