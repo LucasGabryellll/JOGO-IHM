@@ -42,20 +42,8 @@
   border: .8px solid #00D1FF;
 }
 
-.tiled-star-end {
-  position: absolute;
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  height: 50px;
-  width: 50px;
-
+.text-star-end {
   color: #FFF;
   font-size: 14px;
   font-weight: bold;
-
-  background-color: #096a80;
-  border: .8px solid #00D1FF;
 }

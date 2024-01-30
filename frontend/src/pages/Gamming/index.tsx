@@ -6,10 +6,13 @@ import {
   Modal,
   Carts,
   Map,
-  Player
+  Player,
+  GetBonus,
+  GameOver
 } from "../../components";
 
 import { useGammingController } from "../../controller/useGammingController";
+import { useListenGetBonus } from "../../controller/useListenGetBonus";
 import { socket } from "../../service/socketio";
 
 import styles from "./styles.module.css";
@@ -17,6 +20,9 @@ import styles from "./styles.module.css";
 export function Gamming() {
   const { gammingFetch } = useGammingController();
   const { closeRoom, usersInRoom, room, username, statusGame } = gammingFetch();
+
+  const { listenBonusFetch } = useListenGetBonus();
+  const { bonus } = listenBonusFetch();
 
   return (
     <Background>
@@ -38,6 +44,12 @@ export function Gamming() {
       <HeaderUserPoints />
 
       <Map>
+        {bonus?.player === socket.id &&
+          <>
+            {GetBonus({ value: bonus.valueBonus })}
+          </>
+        }
+
         {statusGame?.players &&
           <>
             <Player
@@ -58,6 +70,8 @@ export function Gamming() {
       </Map>
 
       <Chat />
+
+      {<>{GameOver()}</>}
 
       {statusGame?.status &&
         <Carts

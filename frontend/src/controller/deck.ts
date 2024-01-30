@@ -3,12 +3,12 @@ import { CardProps } from "../model/card";
 function createDeck(): CardProps[] {
   const deck: CardProps[] = [];
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 50; i++) {
     const randomNumber = Math.floor(Math.random() * 6) + 1;
     deck.push({ id: `card_move_f${i}`, type: 'moveForward', value: randomNumber });
   }
 
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < 25; i++) {
     const randomNumber = Math.floor(Math.random() * 6) + 1;
 
     deck.push({ id: `card_move_b${i}`, type: 'moveBackward', value: randomNumber });

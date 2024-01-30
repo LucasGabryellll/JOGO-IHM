@@ -1,9 +1,19 @@
 
 import { statusGamming } from "../model/gammingModal";
+import { TypePos, posMap } from "../model/mapGameModal";
+import { io } from "../socketio";
+import { onGetBonus, playerWin } from "./positionController";
 
 interface GammingStateProps {
   playerOne: string;
   roomId: string;
+}
+
+interface onStatusPosProps {
+  player: { id: string, pos: number };
+  type: 'moveBackward' | 'moveForward' | "answerQuestion";
+  roomId: string;
+  value?: number;
 }
 
 function addPlayerInGame({ playerOne, roomId }: GammingStateProps) {
@@ -75,26 +85,110 @@ function updateStatePlayer(roomId: string, player: string, type: 'moveBackward' 
     if (statusGamming[game].players.playerOne.id === player) {
       const player = statusGamming[game].players.playerOne;
 
-      const newValueReturn = player.pos - value < 0 ? 0 : player.pos - value;
-      const newValueRun = player.pos + value > 37 ? 37 : player.pos + value
-
-      type === "moveBackward" ? player.pos = newValueReturn : player.pos = newValueRun;
+      onPosPlayer({ player, type, value, roomId });
 
     } else {
-
       const player = statusGamming[game].players.playerTwo;
 
-      const newValueReturn = player.pos - value < 0 ? 0 : player.pos - value;
-      const newValueRun = player.pos + value > 37 ? 37 : player.pos + value
-
-      type === "moveBackward" ? player.pos = newValueReturn : player.pos = newValueRun;
-
+      onPosPlayer({ player, type, value, roomId });
     }
 
   } else {
     null
   }
 };
+
+function onPosPlayer({ player, type, value, roomId }: onStatusPosProps) {
+  if (value) {
+    const newValueReturn = player.pos - value < 0 ? 0 : player.pos - value;
+    const newValueRun = player.pos + value > 37 ? 37 : player.pos + value;
+
+    /**
+     * Se o tipo da carta for de retorno cai aqui.
+     */
+    if (type === "moveBackward") {
+      const posPlayerInMap = posMap[newValueReturn];
+
+      switch (posPlayerInMap.typePos) {
+        case TypePos.initial:
+          player.pos = newValueReturn;
+
+          break;
+        case TypePos.normal:
+
+          player.pos = newValueReturn;
+
+          break;
+        case TypePos.bonus:
+          const valueBonus = Math.floor(Math.random() * 5) + 1;
+
+          onGetBonus({ bonus: valueBonus, playerId: player.id, roomId });
+
+          player.pos = newValueRun + valueBonus;
+
+          break;
+        case TypePos.quiz:
+          player.pos = newValueRun;
+          break;
+      }
+    }
+
+    /**
+     * Se o tipo de carta for para avançar.
+     */
+    else if (type === "moveForward") {
+      const posPlayerInMap = posMap[newValueRun];
+
+      switch (posPlayerInMap.typePos) {
+        case TypePos.normal:
+
+          player.pos = newValueRun;
+
+          break;
+        case TypePos.bonus:
+          const valueBonus = Math.floor(Math.random() * 5) + 1;
+
+          onGetBonus({ bonus: valueBonus, playerId: player.id, roomId });
+
+          player.pos = newValueRun + valueBonus;
+
+          break;
+        case TypePos.quiz:
+          //responder a pergunta.
+          player.pos = newValueRun;
+
+          break;
+
+        case TypePos.final:
+          playerWin({ playerId: player.id, roomId });
+          
+          player.pos = 37;
+
+          break;
+      }
+    }
+  }
+
+  /**
+   * Se não tiver value é porque a carta é do tipo responder pergunta
+   */
+}
+
+function updatePosPlayerFrame(posInitial: number, posFinal: number, type: 'm' | 'r') {
+  /** Se for para avançar m=move */
+  if (type === 'm') {
+    for (var i = posInitial; i < posFinal; i++) {
+      io.to('').emit('update_pos_player', {
+        id: '',
+        pos: i
+      });
+    }
+  }
+
+  else {
+
+  }
+}
 
 export {
   addPlayerInGame,

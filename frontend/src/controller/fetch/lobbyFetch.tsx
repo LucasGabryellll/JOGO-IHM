@@ -15,7 +15,7 @@ import { OpenRoomResponse } from "../../model/openRoomResponse";
 export function LobbyFetch() {
   const roomMethods = useSchemaValidade<RoomSchema>({ schemaYup: roomSchema });
 
-  const { onSelectRoom } = useContext(GameContext);
+  const { onSelectRoom, username } = useContext(GameContext);
   const { navigation } = useNavigation();
 
   const { state: { isOpenModal, setIsOpenModal } } = useModalController();
@@ -33,7 +33,10 @@ export function LobbyFetch() {
   }
 
   function onOpenRoom(data: RoomSchema) {
-    socket.emit('open_room', data);
+    socket.emit('open_room', {
+      codigo: data.codigo,
+      usuario: username
+    });
 
     socket.on('entry_room', (response: OpenRoomResponse) => {
       if (response.sucess) {

@@ -11,26 +11,24 @@ interface MapProps {
 }
 
 export function Map({ children }: MapProps) {
-  const backgroundColor = (type: 'normal' | 'bonus' | 'quiz') => {
+  const backgroundColor = (type: 'normal' | 'quiz' | 'bonus' | 'final' | 'initial') => {
     switch (type) {
       case 'bonus':
         return '#00A510';
       case 'normal':
         return ''
       case 'quiz':
-        return '#FF5C00'
+        return '#FF5C00';
+      case 'initial':
+        return '#096A80'
+      case 'final':
+        return '#096A80'
     }
   }
 
   return (
     <div className={styles.container}>
       <div className={styles['content-map']}>
-        <div className={styles['tiled-star-end']}
-          style={{ top: 300, left: 0 }}
-        >
-          INICIO
-        </div>
-        
         {children}
 
         {positionMapTiled.map((value, index) => (
@@ -43,7 +41,13 @@ export function Map({ children }: MapProps) {
                 backgroundColor: backgroundColor(value.type)
               }}
             >
-              {value.type === "normal" && index + 1}
+              {value.type === "initial" &&
+                <p className={styles['text-star-end']}>
+                  INICIO
+                </p>
+              }
+
+              {value.type === "normal" && index}
 
               {
                 value.type === "bonus" &&
@@ -56,14 +60,15 @@ export function Map({ children }: MapProps) {
                   <p style={{ fontSize: 14 }}>QUIZ</p>
                 </>
               }
+
+              {value.type === "final" &&
+                <p className={styles['text-star-end']}>
+                  FIM
+                </p>
+              }
             </div>
           </>
         ))}
-        <div className={styles['tiled-star-end']}
-          style={{ top: 350, left: 800 }}
-        >
-          FIM
-        </div>
       </div>
     </div>
   );

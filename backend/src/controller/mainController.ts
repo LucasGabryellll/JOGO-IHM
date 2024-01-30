@@ -129,11 +129,10 @@ io.on("connection", socket => {
     const state = {
       focus: gameState.playerInFocus,
       players: gameState.players,
-      status: gameState.status
+      status: gameState.status,
     }
 
     io.to(codigo).emit('updateStateGame', state);
-
   });
 
   socket.on('disconnect', () => {

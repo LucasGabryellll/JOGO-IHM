@@ -17,3 +17,6 @@ export * from "./Player";
 
 export * from "./Time";
 export * from "./DescriptionPlayer";
+export * from "./GetBonus";
+
+export * from "./GameOver";

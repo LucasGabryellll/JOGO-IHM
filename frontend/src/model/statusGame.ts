@@ -10,5 +10,18 @@ export interface StatusGamming {
       pos: number;
     };
   }
-  status: boolean
+  status: boolean;
+}
+
+export interface MapType {
+  pos: number;
+  typePos: TypePos
+}
+
+export enum TypePos {
+  'initial',
+  'normal',
+  'quiz',
+  'bonus',
+  'final'
 }
