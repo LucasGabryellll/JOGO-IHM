@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-import { DragDropContext, Droppable } from "@hello-pangea/dnd";
+import { Droppable, DroppableProvided } from "@hello-pangea/dnd";
 
 import styles from "./styles.module.css";
 
@@ -13,37 +13,32 @@ export type Config = {
 
 interface DragWordsProps {
   config: Config;
-  onHandle: (result: any) => void;
   children: ReactNode;
 }
 
-export function DragWords({ config, children, onHandle }: DragWordsProps) {
+export function DragWords({ config, children }: DragWordsProps) {
 
   return (
     <section
       className={styles.container}
     >
-      <DragDropContext
-        onDragEnd={onHandle}
+      <Droppable
+        droppableId={config.id}
+        type="list"
+        direction={config.direction}
       >
-        <Droppable
-          droppableId={config.id}
-          type="list"
-          direction={config.direction}
-        >
-          {(props) => (
-            <article
-              ref={props.innerRef}
-              {...props.droppableProps}
-              className={styles['content-items']}
-            >
-              {children}
+        {(props: DroppableProvided) => (
+          <article
+            ref={props.innerRef}
+            {...props.droppableProps}
+            className={styles['content-items']}
+          >
+            {children}
 
-              {props.placeholder}
-            </article>
-          )}
-        </Droppable>
-      </DragDropContext>
+            {props.placeholder}
+          </article>
+        )}
+      </Droppable>
     </section>
   );
 }

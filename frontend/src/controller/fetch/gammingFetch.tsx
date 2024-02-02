@@ -1,17 +1,16 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 
 import { socket } from "../../service/socketio";
 import { useNavigation } from "../../hooks/useNavigation";
 import { GameContext } from "../../context/GameContext";
-import { StatusGamming } from "../../model/statusGame";
+
+import { GameState } from "../state/gammingState";
 
 export function GammingFetch() {
   const { navigation } = useNavigation();
 
   const { room, username } = useContext(GameContext);
-  const [usersInRoom, setUsersInRoom] = useState<number>(0);
-
-  const [statusGame, setStatusGame] = useState<StatusGamming>();
+  const { setStatusGame, setUsersInRoom, statusGame, usersInRoom } = GameState();
 
   function closeRoom() {
     socket.emit('out_room', room);
@@ -30,6 +29,7 @@ export function GammingFetch() {
     username,
     room,
     statusGame,
+
     closeRoom
   }
 }

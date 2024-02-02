@@ -1,8 +1,7 @@
-
 import { statusGamming } from "../model/gammingModal";
 import { TypePos, posMap } from "../model/mapGameModal";
 import { io } from "../socketio";
-import { onGetBonus, playerWin } from "./positionController";
+import { onGetBonus, playerWin, sendChallenge } from "./positionController";
 
 interface GammingStateProps {
   playerOne: string;
@@ -78,7 +77,12 @@ function deleteGame(roomId: string) {
   game !== -1 ? statusGamming.splice(game, 1) : null;
 }
 
-function updateStatePlayer(roomId: string, player: string, type: 'moveBackward' | 'moveForward' | "answerQuestion", value: number) {
+function updateStatePlayer(
+  roomId: string,
+  player: string,
+  type: 'moveBackward' | 'moveForward' | "answerQuestion",
+  value: number
+) {
   const game = findGame(roomId);
 
   if (game !== -1) {
@@ -98,7 +102,7 @@ function updateStatePlayer(roomId: string, player: string, type: 'moveBackward' 
   }
 };
 
-function onPosPlayer({ player, type, value, roomId }: onStatusPosProps) {
+async function onPosPlayer({ player, type, value, roomId }: onStatusPosProps) {
   if (value) {
     const newValueReturn = player.pos - value < 0 ? 0 : player.pos - value;
     const newValueRun = player.pos + value > 37 ? 37 : player.pos + value;
@@ -115,7 +119,6 @@ function onPosPlayer({ player, type, value, roomId }: onStatusPosProps) {
 
           break;
         case TypePos.normal:
-
           player.pos = newValueReturn;
 
           break;
@@ -128,7 +131,22 @@ function onPosPlayer({ player, type, value, roomId }: onStatusPosProps) {
 
           break;
         case TypePos.quiz:
-          player.pos = newValueRun;
+          player.pos = newValueReturn;
+          const codigo = roomId.toUpperCase()
+
+          const game = findGame(codigo);
+          const gameState = statusGamming[game!];
+
+          const state = {
+            focus: player,
+            players: gameState.players,
+            status: false,
+          }
+
+          sendChallenge({ playerId: player.id, roomId });
+
+          io.to(codigo).emit("updateStateGame", state);
+
           break;
       }
     }
@@ -153,15 +171,29 @@ function onPosPlayer({ player, type, value, roomId }: onStatusPosProps) {
           player.pos = newValueRun + valueBonus;
 
           break;
+
         case TypePos.quiz:
-          //responder a pergunta.
           player.pos = newValueRun;
+          const codigo = roomId.toUpperCase()
+
+          const game = findGame(codigo);
+          const gameState = statusGamming[game!];
+
+          const state = {
+            focus: player,
+            players: gameState.players,
+            status: false,
+          }
+
+          sendChallenge({ playerId: player.id, roomId });
+
+          io.to(codigo).emit("updateStateGame", state);
 
           break;
 
         case TypePos.final:
           playerWin({ playerId: player.id, roomId });
-          
+
           player.pos = 37;
 
           break;

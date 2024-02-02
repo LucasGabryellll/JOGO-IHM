@@ -1,10 +1,5 @@
 import { useState } from "react";
-import { Question } from "../../model/questions";
-
-export interface WordProps {
-  id: string;
-  name: string
-}
+import { Question, WordProps } from "../../model/questions";
 
 export function QuestionState() {
   const [question, setQuestion] = useState<Question>();

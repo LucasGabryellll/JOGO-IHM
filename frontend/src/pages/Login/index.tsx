@@ -1,4 +1,4 @@
-import { Background, ButtonOptions, Modal, Question } from "../../components";
+import { Background, ButtonOptions, Modal } from "../../components";
 import { useLoginController } from "../../controller/useLoginController";
 import { optionsInputLogin } from "../../model/loginModel";
 import { LoginSchema } from "../../model/yupShemaValidade/loginSchema";
@@ -14,20 +14,19 @@ export function Login() {
       <ButtonOptions.Root>
         <ButtonOptions.Icon type="sound" action={() => { }} />
       </ButtonOptions.Root>
-      {/*
+
       <p className={styles.title}>
         ESCOLHA UM NOME
       </p>
 
       <div className={styles.container}>
-       <Modal.Form<LoginSchema>
+        <Modal.Form<LoginSchema>
           onSendForm={onHandleLogin}
           useFormMethods={loginMethods}
           dateInputs={optionsInputLogin}
         />
       </div>
-*/}
-      <Question />
+
     </Background>
   )
 }

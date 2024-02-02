@@ -1,7 +1,23 @@
 .container {
+  position: absolute;
+  height: 90%;
+  width: 90%;
+
+  z-index: 99;
+}
+
+.content {
+  display: flex;
+
+  align-items: center;
+
+  flex-direction: column;
+
   background-color: rgba(255, 255, 255, 1);
   border-radius: 10px;
   width: 100%;
+  height: 100%;
+
   margin-top: 5%;
   padding: 1%;
   box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.8);
@@ -14,10 +30,34 @@
 }
 
 .content-organized {
+  width: 100%;
   text-align: center;
   background-color: rgb(211, 255, 167);
   padding: 5px;
 
   border-radius: 5px;
+}
 
+.container-button {
+  margin-top: 20px;
+
+  width: 30%;
+  height: 40px;
+
+  border-radius: 5px;
+
+  border-width: 0;
+
+  font-weight: 700;
+  box-shadow: -2px 2px 2px 2px rgba(0, 0, 0, 0.8);
+
+  transition: 120ms ease-in-out;
+}
+
+.container-button:hover {
+  color: #FFF;
+
+  cursor: pointer;
+  background-color: rgba(25, 219, 193, 0.8);
+  box-shadow: -2px 2px 2px 2px rgba(54, 255, 228, 0.8);
 }

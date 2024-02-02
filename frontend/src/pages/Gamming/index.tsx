@@ -8,11 +8,14 @@ import {
   Map,
   Player,
   GetBonus,
-  GameOver
+  GameOver,
+  QuestionComponent
 } from "../../components";
 
 import { useGammingController } from "../../controller/useGammingController";
 import { useListenGetBonus } from "../../controller/useListenGetBonus";
+import { useQuestionController } from "../../controller/useQuesitonController";
+
 import { socket } from "../../service/socketio";
 
 import styles from "./styles.module.css";
@@ -23,6 +26,11 @@ export function Gamming() {
 
   const { listenBonusFetch } = useListenGetBonus();
   const { bonus } = listenBonusFetch();
+
+  const { questionFetch } = useQuestionController();
+  const questionController = questionFetch();
+
+  const { playerPoints, handleResponse } = questionController;
 
   return (
     <Background>
@@ -41,7 +49,11 @@ export function Gamming() {
         <ButtonOptions.Icon type="close" action={closeRoom} />
       </ButtonOptions.Root>
 
-      <HeaderUserPoints />
+      <HeaderUserPoints 
+        challengeCorrent={playerPoints.correct}
+        challengeIncorrect={playerPoints.incorrect}
+        totalPoints={playerPoints.totalPoints}
+      />
 
       <Map>
         {bonus?.player === socket.id &&
@@ -70,6 +82,19 @@ export function Gamming() {
       </Map>
 
       <Chat />
+
+      {questionController.playerChallenge &&
+        <QuestionComponent
+          isOpen={questionController.playerChallenge === socket.id}
+          onDragWord={questionController.onDragWord}
+          question={questionController.question}
+          words={questionController.words}
+          wordsOrganized={questionController.wordsOrganized}
+          room={room}
+
+          handleResponse={handleResponse}
+        />
+      }
 
       {<>{GameOver()}</>}
 
