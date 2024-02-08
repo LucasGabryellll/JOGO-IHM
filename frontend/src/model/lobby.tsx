@@ -14,7 +14,7 @@ export const OptionsButtonLobby = ({ handleOpenRoom, handleCreateRoom }: Options
   const options = [
     { id: 1, description: "ENTRAR", Icon: MdLogout, onPress: handleOpenRoom },
     { id: 2, description: "CRIAR SALA", Icon: HiOutlinePlusSm, onPress: handleCreateRoom },
-    { id: 3, description: "VOLTAR", Icon: IoReturnDownBackSharp, onPress: () => navigation("/") },
+    { id: 3, description: "VOLTAR", Icon: IoReturnDownBackSharp, onPress: () => navigation("/home") },
   ];
 
   return options;

@@ -14,7 +14,7 @@ export function ReturnToMenu({ headerTitle }: ReturnToMenuProps) {
   return (
     <div className={styles['content-button']}>
       <div className={styles.button}>
-        <Button.Root description="VOLTAR" onPress={() => navigation("/")} >
+        <Button.Root description="VOLTAR" onPress={() => navigation("/home")} >
           <Button.Icon Icon={IoReturnDownBackSharp} />
         </Button.Root>
       </div>
