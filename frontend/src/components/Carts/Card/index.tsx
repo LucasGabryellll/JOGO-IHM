@@ -14,10 +14,10 @@ export function Card({ room }: CardSelectProps) {
   
   const fetch = cardController();
   
-  const { cardSelected, drawCard } = fetch;
+  const { cardSelected, drawCard, btnActive } = fetch;
 
   return (
-    <div className={styles.container} onClick={() => drawCard(room)}>
+    <button className={styles.container} onClick={() => drawCard(room)} disabled={!btnActive}>
       <div
         className={styles['card-inner']}
         style={{ transform: `${cardSelected ? 'rotateY(180deg)' : ''}` }}
@@ -26,6 +26,6 @@ export function Card({ room }: CardSelectProps) {
 
         <BackCard />
       </div>
-    </div>
+    </button>
   )
 }

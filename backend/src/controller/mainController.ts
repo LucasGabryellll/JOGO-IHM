@@ -121,10 +121,9 @@ io.on("connection", socket => {
 
     const cardPos = data.card.value;
     const type = data.card.type;
-
-    updateStatePlayer(codigo, socket.id, type, cardPos);
-
+    
     updatePlayerFocus(codigo);
+    updateStatePlayer(codigo, socket.id, type, cardPos);
 
     const state = {
       focus: gameState.playerInFocus,
@@ -136,23 +135,9 @@ io.on("connection", socket => {
   });
 
   socket.on("response_challenge", (data) => {
-    console.log(data);
-    /*
-    const codigo = data.room.toUpperCase();
-
-
-    const game = findGame(codigo);
-    const gameState = statusGamming[game!];
-    updatePlayerFocus(codigo);
-  
-    const state = {
-      focus: gameState.playerInFocus,
-      players: gameState.players,
-      status: gameState.status,
-    }
-
-    io.to(codigo).emit('updateStateGame', state);
-    */
+    const codigo = data;
+ 
+    io.to(codigo).emit('receive_response', true);
   });
 
   socket.on('disconnect', () => {

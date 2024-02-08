@@ -22,3 +22,4 @@ export * from "./GetBonus";
 export * from "./GameOver";
 
 export * from "./Question";
+export * from "./ControllerSoud";

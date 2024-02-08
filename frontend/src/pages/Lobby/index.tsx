@@ -1,4 +1,12 @@
-import { Background, Button, ButtonOptions, ContentGradient, Modal } from "../../components";
+import {
+  Background,
+  Button,
+  ButtonOptions,
+  ContentGradient,
+  Modal,
+  ControllerSoud
+} from "../../components";
+
 import { useLobbyController } from "../../controller";
 
 import { OptionsButtonLobby, RoomSchema } from "../../model";
@@ -13,7 +21,7 @@ export function Lobby() {
   return (
     <Background>
       <ButtonOptions.Root>
-        <ButtonOptions.Icon type="sound" action={() => { }} />
+        <ControllerSoud />
       </ButtonOptions.Root>
 
       <ContentGradient description="ENTRAR EM UMA PARTIDA">

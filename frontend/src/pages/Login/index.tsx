@@ -1,4 +1,10 @@
-import { Background, ButtonOptions, Modal } from "../../components";
+import {
+  Background,
+  ButtonOptions,
+  Modal,
+  ControllerSoud
+} from "../../components";
+
 import { useLoginController } from "../../controller/useLoginController";
 import { optionsInputLogin } from "../../model/loginModel";
 import { LoginSchema } from "../../model/yupShemaValidade/loginSchema";
@@ -12,7 +18,7 @@ export function Login() {
   return (
     <Background>
       <ButtonOptions.Root>
-        <ButtonOptions.Icon type="sound" action={() => { }} />
+        <ControllerSoud />
       </ButtonOptions.Root>
 
       <p className={styles.title}>

@@ -1,0 +1,17 @@
+.content-help {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.description {
+  color: #111111;
+
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

@@ -1,13 +1,16 @@
 import { ToastNotifyConfig } from "./components/ToastyNotifyConfig";
+import { AudioProvider } from "./context/AudioContext";
 import { GameProvider } from "./context/GameContext";
 import { AppRoutes } from "./routes";
 
 export function App() {
   return (
     <GameProvider>
-      <AppRoutes />
+      <AudioProvider>
+        <AppRoutes />
 
-      <ToastNotifyConfig />
+        <ToastNotifyConfig />
+      </AudioProvider>
     </GameProvider>
   )
 }

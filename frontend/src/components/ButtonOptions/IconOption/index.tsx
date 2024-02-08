@@ -6,7 +6,7 @@ import styles from "./styles.module.css";
 
 interface IconOptionProps {
   action: () => void;
-  type: 'sound' | 'help' | 'close'
+  type: 'sound' | 'help' | 'close', 
 }
 
 export function IconOption({ type, action }: IconOptionProps) {

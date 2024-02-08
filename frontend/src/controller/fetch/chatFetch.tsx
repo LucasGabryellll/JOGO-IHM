@@ -7,7 +7,7 @@ import { socket } from "../../service/socketio";
 import { useSchemaValidade } from "../../hooks/useSchemaValidade";
 
 export function ChatFetch(){
-  const { message, setMessage } = MessagesChatState();
+  const { message, setMessage, newMessage, setNewMessage } = MessagesChatState();
   const { register, handleSubmit, resetField } = useSchemaValidade<MessageSchema>({ schemaYup: messageSchema });
 
   const { room, username} = useContext(GameContext);
@@ -27,6 +27,7 @@ export function ChatFetch(){
   //@ts-ignore
   useEffect(() => {
     socket.on('receive_message', data => {
+      setNewMessage(true);
       setMessage((state => [...state, data]));
     });
 
@@ -39,5 +40,8 @@ export function ChatFetch(){
     onSendMenssage,
     register, 
     handleSubmit,
+
+    newMessage,
+    setNewMessage
   }
 }

@@ -131,6 +131,7 @@ export function QuestionFetch() {
     wordsOrganized?.map((value) => {
       response = response + value.name
     });
+    
     const gabarit = question?.original_word.replace(/\s/g, '');
 
     const isCorrect = response === gabarit ? true : false;
@@ -139,14 +140,12 @@ export function QuestionFetch() {
       pointController.alterCountChallengeCorrect();
       pointController.alterCountPoints({ type: "add", point: question!.points });
 
-      clearChallenge();
       socket.emit("response_challenge", room);
 
     } else {
       pointController.alterCountChallengeIncorrect();
       pointController.alterCountPoints({ type: "sub", point: question!.points });
 
-      clearChallenge();
       socket.emit("response_challenge", room);
 
     }
@@ -162,6 +161,12 @@ export function QuestionFetch() {
       setPlayerChallenge(data.player);
     });
 
+  }, [socket]);
+
+  useEffect(() => {
+    socket.on('receive_response', (receive: boolean) => {
+      receive ? clearChallenge() : null
+    });
   }, [socket]);
 
   const handleResponse = {

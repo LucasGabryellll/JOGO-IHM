@@ -1,10 +1,19 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import { Login, Home, Lobby, Credits, Tutorial, Gamming } from '../pages';
+import { AudioPlayer } from '../components/AudioPlayer';
+import { useContext } from 'react';
+import { AudioContext } from '../context/AudioContext';
 
 export function AppRoutes() {
+  const { audioRef } = useContext(AudioContext);
+
   return (
     <Router>
+      <AudioPlayer
+        audioRef={audioRef}
+      />
+
       <Routes>
         <Route path='/' element={<Login />} />
 

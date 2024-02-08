@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { NotificationType, toasty } from "../../components";
 import { socket } from "../../service/socketio";
 import { CardState } from "../state/cardState";
@@ -7,10 +8,13 @@ const SECUNDS_ANIMATION = 2 * 1000;
 export function CardFetch() {
   const { cardSelected, deck, setCardSelectd, setDeck } = CardState();
 
+  const [btnActive, setBtnActive] = useState(true);
+
   const drawCard = (room: string) => {
+    setBtnActive(false);
+    
     if (deck.length > 0) {
       const drawnCard = deck.pop();
-      //console.log('Carta Sorteada:', drawnCard);
       setCardSelectd(drawnCard);
 
       setDeck([...deck]);
@@ -49,6 +53,7 @@ export function CardFetch() {
     drawCard,
     passedCard,
     
-    cardSelected
+    cardSelected,
+    btnActive
   }
 }

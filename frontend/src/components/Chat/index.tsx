@@ -15,20 +15,27 @@ export function Chat() {
   const { chatController } = useMessageController();
   const fetch = chatController()
 
-  const { handleSubmit, message, onSendMenssage, register } = fetch;
+  const { handleSubmit, message, onSendMenssage, register, setNewMessage, newMessage } = fetch;
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const alterStateOpenChat = () => {
-    setIsOpen(state => !state)
+    setIsOpen(state => !state);
+
+    setNewMessage(false);
   }
 
   return (
     <div className={styles.container} style={{ height: isOpen ? 300 : 80 }}>
+      {newMessage &&
+        <p className={styles['new-message']}>NOVA MENSAGEM</p>
+      }
+
       <button
         className={styles['visible-chat']}
         onClick={alterStateOpenChat}
       >
+
         {isOpen &&
           <IoIosArrowDown />
         }

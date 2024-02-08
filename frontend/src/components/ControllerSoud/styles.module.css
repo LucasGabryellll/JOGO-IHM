@@ -1,0 +1,10 @@
+.container {
+  position: relative;
+}
+
+.content {
+  position: absolute;
+  color: #FFF;
+  font-size: 30px;
+  right: -2px;
+}

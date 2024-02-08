@@ -9,7 +9,9 @@ import {
   Player,
   GetBonus,
   GameOver,
-  QuestionComponent
+  QuestionComponent,
+  ControllerSoud,
+  Time
 } from "../../components";
 
 import { useGammingController } from "../../controller/useGammingController";
@@ -21,6 +23,7 @@ import { socket } from "../../service/socketio";
 import styles from "./styles.module.css";
 
 export function Gamming() {
+
   const { gammingFetch } = useGammingController();
   const { closeRoom, usersInRoom, room, username, statusGame } = gammingFetch();
 
@@ -44,12 +47,12 @@ export function Gamming() {
       </Modal.Root>
 
       <ButtonOptions.Root>
-        <ButtonOptions.Icon type="sound" action={() => console.log("Sound")} />
-        <ButtonOptions.Icon type="help" action={() => console.log("help")} />
+
+        <ControllerSoud />
         <ButtonOptions.Icon type="close" action={closeRoom} />
       </ButtonOptions.Root>
 
-      <HeaderUserPoints 
+      <HeaderUserPoints
         challengeCorrent={playerPoints.correct}
         challengeIncorrect={playerPoints.incorrect}
         totalPoints={playerPoints.totalPoints}
@@ -98,12 +101,40 @@ export function Gamming() {
 
       {<>{GameOver()}</>}
 
-      {statusGame?.status &&
+      {questionController.playerChallenge === "" &&
         <Carts
+          key={`status-game-${statusGame?.status}`}
           namePlayer={`JOGADOR: ${username.toUpperCase()}`}
           isOpen={statusGame?.focus === socket.id}
           room={room}
         />
+      }
+
+      <div
+        className={styles['info-room']}
+      >
+        SALA: {room}
+      </div>
+
+
+      {(questionController.playerChallenge === "" && statusGame?.focus !== socket.id) &&
+        <div
+          className={styles['alter-turn']}
+        >
+          AGUARDANDO JOGADA DO OPONENTE...
+        </div>
+      }
+
+      {(questionController.playerChallenge !== "" && questionController.playerChallenge !== socket.id) &&
+        <div
+          className={styles['alter-turn']}
+        >
+          <Time
+            onTimeOver={() => {}}
+          />
+
+          AGUARDANDO OPONENTE RESOLVER O DESAFIO...
+        </div>
       }
     </Background>
   )

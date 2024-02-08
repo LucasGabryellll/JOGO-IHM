@@ -132,20 +132,8 @@ async function onPosPlayer({ player, type, value, roomId }: onStatusPosProps) {
           break;
         case TypePos.quiz:
           player.pos = newValueReturn;
-          const codigo = roomId.toUpperCase()
-
-          const game = findGame(codigo);
-          const gameState = statusGamming[game!];
-
-          const state = {
-            focus: player,
-            players: gameState.players,
-            status: false,
-          }
-
+ 
           sendChallenge({ playerId: player.id, roomId });
-
-          io.to(codigo).emit("updateStateGame", state);
 
           break;
       }
@@ -174,20 +162,8 @@ async function onPosPlayer({ player, type, value, roomId }: onStatusPosProps) {
 
         case TypePos.quiz:
           player.pos = newValueRun;
-          const codigo = roomId.toUpperCase()
-
-          const game = findGame(codigo);
-          const gameState = statusGamming[game!];
-
-          const state = {
-            focus: player,
-            players: gameState.players,
-            status: false,
-          }
 
           sendChallenge({ playerId: player.id, roomId });
-
-          io.to(codigo).emit("updateStateGame", state);
 
           break;
 
@@ -204,22 +180,6 @@ async function onPosPlayer({ player, type, value, roomId }: onStatusPosProps) {
   /**
    * Se não tiver value é porque a carta é do tipo responder pergunta
    */
-}
-
-function updatePosPlayerFrame(posInitial: number, posFinal: number, type: 'm' | 'r') {
-  /** Se for para avançar m=move */
-  if (type === 'm') {
-    for (var i = posInitial; i < posFinal; i++) {
-      io.to('').emit('update_pos_player', {
-        id: '',
-        pos: i
-      });
-    }
-  }
-
-  else {
-
-  }
 }
 
 export {

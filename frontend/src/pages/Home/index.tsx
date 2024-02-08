@@ -1,4 +1,5 @@
 import { Background, Button, ButtonOptions, ContentGradient } from "../../components";
+import { ControllerSoud } from "../../components/ControllerSoud";
 
 import { OptionsButtonHome } from "../../model";
 
@@ -6,7 +7,7 @@ export function Home() {
   return (
     <Background>
       <ButtonOptions.Root>
-        <ButtonOptions.Icon type="sound" action={() => { }} />
+        <ControllerSoud />
       </ButtonOptions.Root>
 
       <ContentGradient description="JOGO IHM">
