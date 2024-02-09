@@ -8,7 +8,7 @@ import { usePointController } from "../usePointController";
 
 export function QuestionFetch() {
   const { playerChallenge, setPlayerChallenge } = GameState();
-  const { question, words, wordsOrganized, setWordsOrganized, setQuestion, setWords } = QuestionState();
+  const { question, words, wordsOrganized, setWordsOrganized, setQuestion, setWords, confirmReponse, setConfirmResponse } = QuestionState();
 
   const { pointFetch } = usePointController();
   const pointController = pointFetch();
@@ -21,6 +21,8 @@ export function QuestionFetch() {
     setWordsOrganized(undefined);
 
     setPlayerChallenge("");
+
+    setConfirmResponse(undefined);
   }
 
   function reorder<T>(list: T[] | undefined, startIndex: number, endIndex: number) {
@@ -114,7 +116,6 @@ export function QuestionFetch() {
 
   }
 
-
   function handleTimeOver(room: string) {
 
     pointController.alterCountChallengeIncorrect();
@@ -140,13 +141,27 @@ export function QuestionFetch() {
       pointController.alterCountChallengeCorrect();
       pointController.alterCountPoints({ type: "add", point: question!.points });
 
-      socket.emit("response_challenge", room);
+      setConfirmResponse({
+        isSendReponse: true,
+        isCorrect: true
+      });
+
+      setTimeout(() => {
+        socket.emit("response_challenge", room);
+      }, 4000)
 
     } else {
       pointController.alterCountChallengeIncorrect();
       pointController.alterCountPoints({ type: "sub", point: question!.points });
+      
+      setConfirmResponse({
+        isSendReponse: true,
+        isCorrect: false
+      });
 
-      socket.emit("response_challenge", room);
+      setTimeout(() => {
+        socket.emit("response_challenge", room);
+      }, 4000)
 
     }
 
@@ -184,6 +199,8 @@ export function QuestionFetch() {
     playerChallenge, setPlayerChallenge,
 
     handleResponse,
-    playerPoints
+    playerPoints,
+
+    confirmReponse
   }
 }

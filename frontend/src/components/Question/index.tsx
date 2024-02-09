@@ -7,6 +7,7 @@ import { Question, WordProps } from "../../model/questions";
 import { Time } from "..";
 
 import styles from "./styles.module.css";
+import { ConfirmProps } from "../../controller/state/questionState";
 
 const ConfigDragOrganized: Config = {
   id: 'dragOrganized',
@@ -30,14 +31,17 @@ interface QuestionProps {
   handleResponse: {
     sendResponse: (room: string) => void;
     handleTimeOver: (room: string) => void;
-  }
+  },
+
+  confirmReponse: ConfirmProps | undefined
 }
 
 export function QuestionComponent({
   isOpen, onDragWord,
   question,
   words, wordsOrganized,
-  handleResponse, room
+  handleResponse, room,
+  confirmReponse
 }: QuestionProps) {
 
   if (!isOpen) return null;
@@ -91,6 +95,18 @@ export function QuestionComponent({
           CONFIMAR RESPOSTA
         </button>
 
+        {confirmReponse?.isSendReponse &&
+          <div className={styles['content-gabarit']} style={{ backgroundColor: confirmReponse?.isCorrect ? 'rgba(25, 219, 193, 0.8)' : 'red' }}>
+            <p>
+              RESPOSTA: {confirmReponse.isCorrect ? "CORRETA": "ERRADA!"}
+            </p>
+
+            <p>GABARITO:</p>
+            <p className={styles['word-gabarit']}>
+              {question?.original_word}
+            </p>
+          </div>
+        }
       </div>
     </div>
   )

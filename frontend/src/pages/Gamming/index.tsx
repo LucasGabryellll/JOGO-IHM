@@ -47,7 +47,6 @@ export function Gamming() {
       </Modal.Root>
 
       <ButtonOptions.Root>
-
         <ControllerSoud />
         <ButtonOptions.Icon type="close" action={closeRoom} />
       </ButtonOptions.Root>
@@ -94,7 +93,8 @@ export function Gamming() {
           words={questionController.words}
           wordsOrganized={questionController.wordsOrganized}
           room={room}
-
+          confirmReponse={questionController.confirmReponse}
+          
           handleResponse={handleResponse}
         />
       }
@@ -130,7 +130,7 @@ export function Gamming() {
           className={styles['alter-turn']}
         >
           <Time
-            onTimeOver={() => {}}
+            onTimeOver={() => { }}
           />
 
           AGUARDANDO OPONENTE RESOLVER O DESAFIO...

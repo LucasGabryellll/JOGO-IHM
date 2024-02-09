@@ -61,3 +61,24 @@
   background-color: rgba(25, 219, 193, 0.8);
   box-shadow: -2px 2px 2px 2px rgba(54, 255, 228, 0.8);
 }
+
+.content-gabarit {
+  display: flex;
+  margin-top: 20px;
+
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  
+  width: 100%;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  padding: 5px;
+
+  border-radius: 5px;
+}
+
+.word-gabarit {
+  font-weight: 800;
+}
