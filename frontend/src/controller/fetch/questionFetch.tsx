@@ -148,7 +148,7 @@ export function QuestionFetch() {
 
       setTimeout(() => {
         socket.emit("response_challenge", room);
-      }, 4000)
+      }, 2800)
 
     } else {
       pointController.alterCountChallengeIncorrect();
@@ -161,7 +161,7 @@ export function QuestionFetch() {
 
       setTimeout(() => {
         socket.emit("response_challenge", room);
-      }, 4000)
+      }, 2800)
 
     }
 
@@ -169,6 +169,7 @@ export function QuestionFetch() {
 
   useEffect(() => {
     socket.on('open_challenge', (data: ChallengeResponse) => {
+
       setQuestion(data.question);
       setWords(data.challengeWords);
       setWordsOrganized([]);

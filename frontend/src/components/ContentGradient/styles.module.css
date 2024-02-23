@@ -33,13 +33,22 @@
 }
 
 .description {
-  color: aliceblue;
+  text-align: center;
+  color: #004E60;
+  background-color: aliceblue;
+  border-radius: 10px;
 
-  font-size: 48px;
+  padding: 5px;
+  width: 35%;
+
+  font-size: 36px;
 
   animation: bounce 1.5s infinite;
   animation-direction: alternate;
   animation-timing-function: cubic-bezier(.5, 0.05, 1, .5);
+
+  box-shadow: -5px 5px rgba(0, 0, 0, 0.2);
+
 }
 
 @keyframes bounce {

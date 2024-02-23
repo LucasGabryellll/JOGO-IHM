@@ -10,7 +10,7 @@ export function Home() {
         <ControllerSoud />
       </ButtonOptions.Root>
 
-      <ContentGradient description="JOGO IHM">
+      <ContentGradient description="BATALHA DA SINTAXE">
         {OptionsButtonHome().map((value) => (
           <div
             key={`options-buttons-home-${value.id}`}

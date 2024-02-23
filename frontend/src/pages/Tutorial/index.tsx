@@ -24,6 +24,7 @@ export function Tutorial() {
         />
 
         <div className={styles['content-options']}>
+          { /*@ts-ignore*/}
           {help_items.map((value, index) => (
             <button
               className={styles.btn}

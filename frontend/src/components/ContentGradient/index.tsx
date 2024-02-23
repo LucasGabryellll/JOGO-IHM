@@ -9,7 +9,9 @@ interface ContentGradientProps {
 export function ContentGradient({ description, children }: ContentGradientProps) {
   return (
     <div className={styles.container}>
-      <p className={styles.description}>{description}</p>
+      {description &&
+        <p className={styles.description}>{description}</p>
+      }
 
       <div className={styles.content}>
         {children}

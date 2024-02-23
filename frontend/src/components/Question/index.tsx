@@ -59,7 +59,7 @@ export function QuestionComponent({
           onDragEnd={onDragWord}
         >
           <div className={styles['content-organized']}>
-            <p>SOLTE AQUI:</p>
+            <p>SOLTE AS PALAVRAS NESSA ÁREA:</p>
 
             <DragWords
               config={ConfigDragOrganized}

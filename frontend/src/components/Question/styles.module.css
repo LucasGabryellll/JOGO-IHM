@@ -32,7 +32,7 @@
 .content-organized {
   width: 100%;
   text-align: center;
-  background-color: rgb(211, 255, 167);
+  background-color: rgb(167, 241, 93);
   padding: 5px;
 
   border-radius: 5px;
@@ -40,6 +40,10 @@
 
 .container-button {
   margin-top: 20px;
+
+  background-color: rgb(0, 141, 31);
+
+  color: #FFF;
 
   width: 30%;
   height: 40px;
@@ -58,8 +62,8 @@
   color: #FFF;
 
   cursor: pointer;
-  background-color: rgba(25, 219, 193, 0.8);
-  box-shadow: -2px 2px 2px 2px rgba(54, 255, 228, 0.8);
+  background-color: rgb(1, 99, 22);
+  box-shadow: -2px 2px 2px 2px rgb(1, 97, 22);
 }
 
 .content-gabarit {

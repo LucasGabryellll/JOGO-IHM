@@ -4,8 +4,8 @@ function createDeck(): CardProps[] {
   const deck: CardProps[] = [];
 
   for (let i = 0; i < 50; i++) {
-    const randomNumber = Math.floor(Math.random() * 6) + 1;
-    deck.push({ id: `card_move_f${i}`, type: 'moveForward', value: randomNumber });
+    //const randomNumber = Math.floor(Math.random() * 6) + 1;
+    deck.push({ id: `card_move_f${i}`, type: 'moveForward', value: 5 });
   }
 
   for (let i = 0; i < 25; i++) {
@@ -13,18 +13,6 @@ function createDeck(): CardProps[] {
 
     deck.push({ id: `card_move_b${i}`, type: 'moveBackward', value: randomNumber });
   }
-
-  /*
-  const questions = [
-    'Qual é a capital do Brasil?',
-    'Quem é o presidente dos EUA?',
-    'Quanto é 2 + 2?',
-  ];
-  for (let i = 0; i < 5; i++) {
-    const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
-    deck.push({ id: `card_${i + 15}`, type: 'answerQuestion', question: randomQuestion });
-  }
-  */
 
   return shuffle(deck);
 }
