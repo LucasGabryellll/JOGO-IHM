@@ -121,6 +121,11 @@ export function QuestionFetch() {
     pointController.alterCountChallengeIncorrect();
     pointController.alterCountPoints({ type: "sub", point: question!.points });
 
+    setConfirmResponse({
+      isSendReponse: true,
+      isCorrect: false
+    });
+    
     clearChallenge();
 
     socket.emit("response_challenge", room);
