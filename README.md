@@ -1,12 +1,20 @@
 # Projeto da Cadeira de Interface Homem-Máquina
 
-## Jogo com tema de programação.
+## Telas.
+<p align="center">
+  <img alt="GitHub language count" src=https://github.com/LucasGabryellll/JOGO-IHM/blob/main/assets/tela_do_jogo.png>
+  <img alt="GitHub language count" src=https://github.com/LucasGabryellll/JOGO-IHM/blob/main/assets/aguardando_jogador.png>
+  <img alt="GitHub language count" src=https://github.com/LucasGabryellll/JOGO-IHM/blob/main/assets/desafio.png>
 
-
+## ⌛ Sobre o projeto:
+- O projeto tem por objetivo a criação de um jogo com tema educacional voltado para aprendizado em programação. O design das telas
+  seguem os principios de IHM.
+- O jogo é multiplayer que utiliza sockets, para isto foi utilizado o NodeJS. A interface do usuário foi feito com o React com
+  linguagem TypeScript.
 
 ## 🚀 Ferramentas e Tecnologías:
  - <img src="https://img.icons8.com/color/344/typescript.png" width="25px"> Typescript.
- - <img src="https://www.flaticon.com/free-icon/node-js_5968322" width="25px"> Node JS.
+ - <img src="https://cdn-icons-png.flaticon.com/512/5968/5968322.png" width="25px"> Node JS.
  - <img src="https://cdn-icons-png.flaticon.com/512/875/875209.png" width="25px"> React.
 
  ## Autor:
